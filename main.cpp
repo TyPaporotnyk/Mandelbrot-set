@@ -6,9 +6,22 @@
 using std::cout;
 using std::endl;
 
+#define WIDTH 1920
+#define HEIGHT 1280
 
-constexpr int WIDTH = 1920;
-constexpr int HEIGHT = 1080;
+std::vector<sf::Color> colors{
+        {  0,   2, 0},
+        {   32, 107, 203},
+        { 237, 255, 255},
+        {255, 170,   0},
+        { 0,   7, 100}
+};
+
+sf::Color linearInterpolation(const sf::Color& v, const sf::Color& u, double a)
+{
+    double const b = 1-a;
+    return sf::Color(b * v.r + a * u.r, b * v.g + a * u.g, b * v.b + a * u.b);
+}
 
 int main()
 {
@@ -20,12 +33,14 @@ int main()
     sf::Texture texture;
     sf::Sprite sprite;
 
-    bool draw = false;
-    int iterations = 1000;
-    double minReal = -2.5;
-    double maxReal = 1;
-    double minImagin = -1;
-    double maxImagin = 1;
+    bool painted = false;
+    int iterations = 100;
+
+    // Complex plane size
+    double minRe = -2, maxRe = 1;
+    double minIm = -1, maxIm = 1;
+
+    unsigned long max_color = colors.size()-1;
 
     while(window.isOpen())
     {
@@ -35,27 +50,36 @@ int main()
         {
             if(e.type == sf::Event::Closed) window.close();
 
-//            if(e.mouseWheelScroll.wheel == sf::Mouse::VerticalWheel)
-//            {
-//                draw = false;
-//                if(e.mouseWheelScroll.delta > 0) iterations+=20;
-//                else iterations-=20;
-//                if(iterations<5) iterations = 1;
-//            }
+            if(e.type==sf::Event::KeyPressed)
+            {
+
+                if(e.key.code == sf::Keyboard::Up)
+                {
+                    iterations+=10;
+                    painted = false;
+                    cout << "Iterations: " << iterations << endl;
+                }
+                else if(e.key.code == sf::Keyboard::Down & iterations > 10)
+                {
+                    iterations -= 10;
+                    painted = false;
+                    cout << "Iterations: " << iterations << endl;
+                }
+            }
 
         }
 
         window.clear();
 
-        if(!draw)
+        if(!painted)
         {
-            draw = true;
+            painted = true;
             for (int y = 0; y < HEIGHT; ++y)
             {
                 for (int x = 0; x < WIDTH; ++x)
                 {
-                    double a = minReal+(maxReal-minReal)*x/WIDTH;
-                    double b = minImagin+(maxImagin-minImagin)*y/HEIGHT;
+                    double a = minRe+(maxRe-minRe)*x/WIDTH;
+                    double b = minIm+(maxIm-minIm)*y/HEIGHT;
 
                     complex c(a, b);
                     complex z(0, 0);
@@ -68,12 +92,20 @@ int main()
                         z.square();
                         z.add(c);
 
-//                        cout << iteration << " : " << z.getA() << "\t" << z.getB() << " => " << z.absolute() << endl;
-
                         if (z.absolute() > 2) break;
                     } while (iteration < iterations);
-                    image.setPixel(x, y, iteration < iterations ? sf::Color(iteration, iteration, iteration) :
-                                                                        sf::Color(255,255,255));
+
+
+                    if(iteration == iterations) iteration=0;
+
+                    double mu = 1.0 * iteration / iterations;
+                    mu *= max_color;
+                    size_t i_mu = static_cast<size_t>(mu);
+                    sf::Color color1 = colors[i_mu];
+                    sf::Color color2 = colors[std::min(i_mu+1, max_color)];
+
+                    image.setPixel(x, y, linearInterpolation(color1, color2, mu-i_mu));
+
                 }
             }
             texture.loadFromImage(image);
