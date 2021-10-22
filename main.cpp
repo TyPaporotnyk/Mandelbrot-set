@@ -20,7 +20,9 @@ std::vector<sf::Color> colors{
 sf::Color linearInterpolation(sf::Color v, sf::Color u, double a)
 {
     double const b = 1-a;
-    return sf::Color(b * v.r + a * u.r, b * v.g + a * u.g, b * v.b + a * u.b);
+    return sf::Color(b * v.r + a * u.r, 
+                     b * v.g + a * u.g, 
+                     b * v.b + a * u.b);
 }
 
 int main()
