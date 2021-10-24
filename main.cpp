@@ -20,8 +20,8 @@ std::vector<sf::Color> colors{
 sf::Color linearInterpolation(sf::Color v, sf::Color u, double a)
 {
     double const b = 1-a;
-    return sf::Color(b * v.r + a * u.r, 
-                     b * v.g + a * u.g, 
+    return sf::Color(b * v.r + a * u.r,
+                     b * v.g + a * u.g,
                      b * v.b + a * u.b);
 }
 
@@ -52,7 +52,7 @@ int main()
         {
             if(e.type == sf::Event::Closed) window.close();
 
-            if(e.type==sf::Event::KeyPressed)
+            else if(e.type==sf::Event::KeyPressed)
             {
 
                 if(e.key.code == sf::Keyboard::Up)
@@ -69,6 +69,39 @@ int main()
                 }
             }
 
+            /* github: @MaloDaHood */
+            else if(e.type == sf::Event::MouseButtonPressed)
+            {
+                painted = false;
+                auto zoom = [&](double z)
+                {
+                    double cx = minRe+(maxRe-minRe)*e.mouseButton.x/WIDTH;
+                    double cy = minIm+(maxIm-minIm)*e.mouseButton.y/HEIGHT;
+
+                    double tminr {cx-(maxRe-minRe)/2/z};
+                    maxRe=cx+(maxRe-minRe)/2/z;
+                    minRe=tminr;
+
+                    double tmini {cy-(maxIm-minIm)/2/z};
+                    maxIm=cy+(maxIm-minIm)/2/z;
+                    minIm=tmini;
+                };
+
+                // Left Click to ZoomIn
+                if(e.mouseButton.button==sf::Mouse::Left)
+                {
+                    zoom(2);
+                    //zoom*=5;
+                }
+                // Right Click to ZoomOut
+                if(e.mouseButton.button==sf::Mouse::Right)
+                {
+                    zoom(1.0/2);
+                    //zoom/=5;
+                }
+
+            }
+            /////
         }
 
         window.clear();
@@ -98,10 +131,10 @@ int main()
                     } while (iteration < iterations);
 
 
-                    if(iteration == iterations) iteration=0;
+                    if(iteration == iterations) iteration = 0;
 
-                    double mu = 1.0 * iteration / iterations;
-                    mu *= max_color;
+                    double mu = 1.0 * iteration / iterations * max_color;
+
                     size_t i_mu = static_cast<size_t>(mu);
                     sf::Color color1 = colors[i_mu];
                     sf::Color color2 = colors[std::min(i_mu+1, max_color)];
