@@ -1,25 +1,13 @@
 #include <SFML/Graphics.hpp>
 #include <iostream>
+#include <string>
 
 #include "complex.h"
-
-using std::cout;
-using std::endl;
-
-#define WIDTH 1920
-#define HEIGHT 1280
-
-std::vector<sf::Color> colors{
-        {  0,   2, 0},
-        {   32, 107, 203},
-        { 237, 255, 255},
-        {255, 170,   0},
-        { 0,   7, 100}
-};
+#include "assets.hpp"
 
 sf::Color linearInterpolation(sf::Color v, sf::Color u, double a)
 {
-    double const b = 1-a;
+    double b = 1-a;
     return sf::Color(b * v.r + a * u.r,
                      b * v.g + a * u.g,
                      b * v.b + a * u.b);
@@ -28,12 +16,19 @@ sf::Color linearInterpolation(sf::Color v, sf::Color u, double a)
 int main()
 {
     sf::RenderWindow window(sf::VideoMode(WIDTH, HEIGHT), "Mandelbrot set");
-    window.setFramerateLimit(30);
+    window.setFramerateLimit(MAX_FPS);
 
     sf::Image image;
     image.create(WIDTH, HEIGHT);
     sf::Texture texture;
     sf::Sprite sprite;
+
+    sf::Font font1;
+    if(!font1.loadFromFile(FONT_PATH)) std::cout << "Font not loaded!" << std::endl;
+    sf::Text text;
+    text.setFont(font1);
+    text.setCharacterSize(TEXT_SIZE);
+    text.setFillColor(TEXT_COLOR);
 
     bool painted = false;
     int iterations = 100;
@@ -41,7 +36,7 @@ int main()
     // Complex plane size
     double minRe = -2, maxRe = 1;
     double minIm = -1, maxIm = 1;
-
+    double zoom = 1;
     unsigned long max_color = colors.size()-1;
 
     while(window.isOpen())
@@ -52,6 +47,7 @@ int main()
         {
             if(e.type == sf::Event::Closed) window.close();
 
+            //control
             else if(e.type==sf::Event::KeyPressed)
             {
 
@@ -59,13 +55,11 @@ int main()
                 {
                     iterations+=10;
                     painted = false;
-                    cout << "Iterations: " << iterations << endl;
                 }
                 else if(e.key.code == sf::Keyboard::Down & iterations > 10)
                 {
                     iterations -= 10;
                     painted = false;
-                    cout << "Iterations: " << iterations << endl;
                 }
             }
 
@@ -73,7 +67,7 @@ int main()
             else if(e.type == sf::Event::MouseButtonPressed)
             {
                 painted = false;
-                auto zoom = [&](double z)
+                auto zoom_z = [&](double z)
                 {
                     double cx = minRe+(maxRe-minRe)*e.mouseButton.x/WIDTH;
                     double cy = minIm+(maxIm-minIm)*e.mouseButton.y/HEIGHT;
@@ -90,14 +84,14 @@ int main()
                 // Left Click to ZoomIn
                 if(e.mouseButton.button==sf::Mouse::Left)
                 {
-                    zoom(2);
-                    //zoom*=5;
+                    zoom_z(2);
+                    zoom*=5;
                 }
                 // Right Click to ZoomOut
                 if(e.mouseButton.button==sf::Mouse::Right)
                 {
-                    zoom(1.0/2);
-                    //zoom/=5;
+                    zoom_z(1.0/2);
+                    zoom/=5;
                 }
 
             }
@@ -106,6 +100,7 @@ int main()
 
         window.clear();
 
+        //logic and paint
         if(!painted)
         {
             painted = true;
@@ -120,7 +115,7 @@ int main()
                     complex z(0, 0);
 
                     int iteration = 0;
-                    do
+                    while (iteration < iterations)
                     {
                         iteration++;
 
@@ -128,8 +123,7 @@ int main()
                         z.add(c);
 
                         if (z.absolute() > 2) break;
-                    } while (iteration < iterations);
-
+                    }
 
                     if(iteration == iterations) iteration = 0;
 
@@ -140,13 +134,20 @@ int main()
                     sf::Color color2 = colors[std::min(i_mu+1, max_color)];
 
                     image.setPixel(x, y, linearInterpolation(color1, color2, mu-i_mu));
-
                 }
             }
             texture.loadFromImage(image);
             sprite.setTexture(texture);
         }
+
         window.draw(sprite);
+
+        //Text
+        char str[100];
+        sprintf(str, "iterations : %d\nzoom : x%3.2f\nmaxRe : %f minRe : %f\nmaxIm : %f minIm : %f",
+                iterations, zoom, maxRe, minRe, maxIm, minIm);
+        text.setString(str);
+        window.draw(text);
 
         window.display();
     }

@@ -9,8 +9,8 @@
 class complex
 {
 private:
-    double a;
-    double b;
+    double a; // real
+    double b; // imaginary
 public:
     explicit complex(double a, double b);
     void add(complex c);

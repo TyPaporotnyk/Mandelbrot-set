@@ -25,8 +25,8 @@ double complex::absolute()
 void complex::square()
 {
     double temp = (a*a)-(b*b);
-    b = (a*b) + (b*a);
-    a = temp;
+    this->b = (a*b) + (b*a);
+    this->a = temp;
 }
 
 double complex::getA()

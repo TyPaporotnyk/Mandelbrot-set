@@ -5,6 +5,6 @@ set(CMAKE_CXX_STANDARD 14)
 
 find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
 
-add_executable(Mandelbrot_set main.cpp complex.cpp complex.h)
+add_executable(Mandelbrot_set main.cpp complex.cpp complex.h assets.hpp)
 
 target_link_libraries(Mandelbrot_set sfml-graphics)
