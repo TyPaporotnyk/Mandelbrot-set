@@ -8,7 +8,7 @@
 #define HEIGHT 1280
 
 // Text
-#define FONT_PATH "../font/poppins.ttf"
+#define FONT_PATH "font/poppins.ttf"
 #define TEXT_SIZE 21
 #define TEXT_COLOR sf::Color::White
 
