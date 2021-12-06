@@ -63,7 +63,6 @@ int main()
                 }
             }
 
-            /* github: @MaloDaHood */
             else if(e.type == sf::Event::MouseButtonPressed)
             {
                 painted = false;
@@ -95,7 +94,6 @@ int main()
                 }
 
             }
-            /////
         }
 
         window.clear();
