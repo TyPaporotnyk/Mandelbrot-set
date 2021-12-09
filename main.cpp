@@ -71,11 +71,11 @@ int main()
                     double cx = minRe+(maxRe-minRe)*e.mouseButton.x/WIDTH;
                     double cy = minIm+(maxIm-minIm)*e.mouseButton.y/HEIGHT;
 
-                    double tminr {cx-(maxRe-minRe)/2/z};
+                    double tminr = cx-(maxRe-minRe)/2/z;
                     maxRe=cx+(maxRe-minRe)/2/z;
                     minRe=tminr;
 
-                    double tmini {cy-(maxIm-minIm)/2/z};
+                    double tmini = cy-(maxIm-minIm)/2/z;
                     maxIm=cy+(maxIm-minIm)/2/z;
                     minIm=tmini;
                 };
