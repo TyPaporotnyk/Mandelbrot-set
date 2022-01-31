@@ -1,7 +1,3 @@
-//
-// Created by Даниил on 21.10.2021.
-//
-
 #ifndef MANDELBROT_SET_COMPLEX_H
 #define MANDELBROT_SET_COMPLEX_H
 

@@ -1,7 +1,3 @@
-//
-// Created by Даниил on 21.10.2021.
-//
-
 #include "complex.h"
 #include <math.h>
 
