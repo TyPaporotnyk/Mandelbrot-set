@@ -6,6 +6,3 @@
 Implementation of the Mandelbrot set with c ++ and the sfml graphics library</br>
 
 ![Project demonstration](img/1.png)
-
-## Control
-*To iteration change press Up and Down
