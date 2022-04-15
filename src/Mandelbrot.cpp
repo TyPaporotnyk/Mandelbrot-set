@@ -2,7 +2,9 @@
 #include "complex.h"
 #include "mathIn.h"
 
+#include <iomanip>
 #include <iostream>
+#include <sstream>
 
 Mandelbrot::Mandelbrot()
 {
@@ -18,9 +20,12 @@ Mandelbrot::Mandelbrot()
     text.setFont(font1);
     text.setCharacterSize(TEXT_SIZE);
     text.setFillColor(TEXT_COLOR);
+    text.setPosition({20,20});
 
     // Coloring
     max_color = colors.size()-1;
+
+    clock = sf::Clock();
 }
 
 int Mandelbrot::run()
@@ -34,7 +39,7 @@ int Mandelbrot::run()
         window->clear();
 
         paint();
-//        setText();
+        setText();
 
         window->display();
     }
@@ -52,13 +57,13 @@ void Mandelbrot::control(sf::Event e)
         else if(e.type == sf::Event::KeyPressed)
         {
             painted = false;
-            if(e.key.code == sf::Keyboard::Up)
+            if(e.key.code == sf::Keyboard::RBracket)
             {
-                iterations+=10;
+                iterations+=25;
             }
-            else if(e.key.code == sf::Keyboard::Down & iterations > 10)
+            else if(e.key.code == sf::Keyboard::LBracket & iterations > 25)
             {
-                iterations -= 10;
+                iterations -= 25;
             }
 
                 // Up/Down
@@ -169,9 +174,11 @@ void Mandelbrot::paint()
 
 void Mandelbrot::setText()
 {
-    char str[100];
-    sprintf(str, "iterations : %d\nzoom : x%3.2lf\nmaxRe : %lf minRe : %lf\nmaxIm : %lf minIm : %lf",
-            iterations, zoom, maxRe, minRe, maxIm, minIm);
-    text.setString(str);
+    auto textBuilder = std::ostringstream();
+
+    textBuilder << std::setw(4) << 1'000'000 / clock.restart().asMicroseconds() << " fps\n";
+    textBuilder << std::setw(4) << iterations << " iterations\n";
+
+    text.setString(textBuilder.str());
     window->draw(text);
 }

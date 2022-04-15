@@ -1,36 +1,36 @@
 #include "complex.h"
 #include <math.h>
 
-complex::complex(double a, double b)
+complex::complex(double r, double im)
 {
-    this->a = a;
-    this->b = b;
+    this->r = r;
+    this->im = im;
 }
 
 void complex::add(complex c)
 {
-    this->a += c.getA();
-    this->b += c.getB();
+    this->r += c.getA();
+    this->im += c.getB();
 }
 
 double complex::absolute()
 {
-    return sqrt((a*a) + (b*b));
+    return sqrt((r*r) + (im*im));
 }
 
 void complex::square()
 {
-    double temp = (a*a)-(b*b);
-    this->b = (a*b) + (b*a);
-    this->a = temp;
+    double temp = (r*r)-(im*im);
+    this->im = (r*im) + (im*r);
+    this->r = temp;
 }
 
 double complex::getA()
 {
-    return this->a;
+    return this->r;
 }
 
 double complex::getB()
 {
-    return this->b;
+    return this->im;
 }

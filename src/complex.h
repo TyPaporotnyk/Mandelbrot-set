@@ -5,10 +5,10 @@
 class complex
 {
 private:
-    double a; // real
-    double b; // imaginary
+    double r; // real
+    double im; // imaginary
 public:
-    explicit complex(double a, double b);
+    explicit complex(double r, double im);
     void add(complex c);
     double absolute();
     void square();

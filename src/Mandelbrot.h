@@ -9,17 +9,18 @@
 class Mandelbrot
 {
 private:
-    const int MAX_FPS = 30;
+    const int MAX_FPS = 60;
 
-    const int WIDTH = 960;
-    const int HEIGHT = 640;
+    const int WIDTH = 1920;
+    const int HEIGHT = 1280;
 
-    const std::string FONT_PATH = "font/poppins.ttf";
-    const int TEXT_SIZE = 15;
+    const int TEXT_SIZE = 24;
     const sf::Color TEXT_COLOR = sf::Color::White;
 
     bool painted = false;
     int iterations = 100;
+
+    sf::Clock clock;
 
     double minRe = -2, maxRe = 1;
     double minIm = -1, maxIm = 1;
