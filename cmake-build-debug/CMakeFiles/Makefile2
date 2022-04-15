@@ -54,16 +54,16 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/daniil/Documents/Projects/Mandelbrot set"
+CMAKE_SOURCE_DIR = /Users/daniil/Documents/Projects/Mandelbrot-set
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug"
+CMAKE_BINARY_DIR = /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug
 
 #=============================================================================
 # Directory level rules for the build root directory
 
 # The main recursive "all" target.
-all: CMakeFiles/Mandelbrot_set.dir/all
+all: CMakeFiles/mandelbrot.dir/all
 .PHONY : all
 
 # The main recursive "preinstall" target.
@@ -71,34 +71,115 @@ preinstall:
 .PHONY : preinstall
 
 # The main recursive "clean" target.
-clean: CMakeFiles/Mandelbrot_set.dir/clean
+clean: CMakeFiles/tidy.dir/clean
+clean: CMakeFiles/format.dir/clean
+clean: CMakeFiles/relise.dir/clean
+clean: CMakeFiles/mandelbrot.dir/clean
 .PHONY : clean
 
 #=============================================================================
-# Target rules for target CMakeFiles/Mandelbrot_set.dir
+# Target rules for target CMakeFiles/tidy.dir
 
 # All Build rule for target.
-CMakeFiles/Mandelbrot_set.dir/all:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mandelbrot_set.dir/build.make CMakeFiles/Mandelbrot_set.dir/depend
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mandelbrot_set.dir/build.make CMakeFiles/Mandelbrot_set.dir/build
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir="/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug/CMakeFiles" --progress-num=1,2,3 "Built target Mandelbrot_set"
-.PHONY : CMakeFiles/Mandelbrot_set.dir/all
+CMakeFiles/tidy.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tidy.dir/build.make CMakeFiles/tidy.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tidy.dir/build.make CMakeFiles/tidy.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles --progress-num= "Built target tidy"
+.PHONY : CMakeFiles/tidy.dir/all
 
 # Build rule for subdir invocation for target.
-CMakeFiles/Mandelbrot_set.dir/rule: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug/CMakeFiles" 3
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/Mandelbrot_set.dir/all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug/CMakeFiles" 0
-.PHONY : CMakeFiles/Mandelbrot_set.dir/rule
+CMakeFiles/tidy.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/tidy.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/tidy.dir/rule
 
 # Convenience name for target.
-Mandelbrot_set: CMakeFiles/Mandelbrot_set.dir/rule
-.PHONY : Mandelbrot_set
+tidy: CMakeFiles/tidy.dir/rule
+.PHONY : tidy
 
 # clean rule for target.
-CMakeFiles/Mandelbrot_set.dir/clean:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mandelbrot_set.dir/build.make CMakeFiles/Mandelbrot_set.dir/clean
-.PHONY : CMakeFiles/Mandelbrot_set.dir/clean
+CMakeFiles/tidy.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tidy.dir/build.make CMakeFiles/tidy.dir/clean
+.PHONY : CMakeFiles/tidy.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/format.dir
+
+# All Build rule for target.
+CMakeFiles/format.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/format.dir/build.make CMakeFiles/format.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/format.dir/build.make CMakeFiles/format.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles --progress-num= "Built target format"
+.PHONY : CMakeFiles/format.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/format.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles 0
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/format.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/format.dir/rule
+
+# Convenience name for target.
+format: CMakeFiles/format.dir/rule
+.PHONY : format
+
+# clean rule for target.
+CMakeFiles/format.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/format.dir/build.make CMakeFiles/format.dir/clean
+.PHONY : CMakeFiles/format.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/relise.dir
+
+# All Build rule for target.
+CMakeFiles/relise.dir/all: CMakeFiles/mandelbrot.dir/all
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/relise.dir/build.make CMakeFiles/relise.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/relise.dir/build.make CMakeFiles/relise.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles --progress-num= "Built target relise"
+.PHONY : CMakeFiles/relise.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/relise.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/relise.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/relise.dir/rule
+
+# Convenience name for target.
+relise: CMakeFiles/relise.dir/rule
+.PHONY : relise
+
+# clean rule for target.
+CMakeFiles/relise.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/relise.dir/build.make CMakeFiles/relise.dir/clean
+.PHONY : CMakeFiles/relise.dir/clean
+
+#=============================================================================
+# Target rules for target CMakeFiles/mandelbrot.dir
+
+# All Build rule for target.
+CMakeFiles/mandelbrot.dir/all:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/depend
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/build
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --progress-dir=/Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles --progress-num=1,2,3,4 "Built target mandelbrot"
+.PHONY : CMakeFiles/mandelbrot.dir/all
+
+# Build rule for subdir invocation for target.
+CMakeFiles/mandelbrot.dir/rule: cmake_check_build_system
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles 4
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 CMakeFiles/mandelbrot.dir/all
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles 0
+.PHONY : CMakeFiles/mandelbrot.dir/rule
+
+# Convenience name for target.
+mandelbrot: CMakeFiles/mandelbrot.dir/rule
+.PHONY : mandelbrot
+
+# clean rule for target.
+CMakeFiles/mandelbrot.dir/clean:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/clean
+.PHONY : CMakeFiles/mandelbrot.dir/clean
 
 #=============================================================================
 # Special targets to cleanup operation of make.

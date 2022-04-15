@@ -53,10 +53,10 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/daniil/Documents/Projects/Mandelbrot set"
+CMAKE_SOURCE_DIR = /Users/daniil/Documents/Projects/Mandelbrot-set
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug"
+CMAKE_BINARY_DIR = /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug
 
 # Include any dependencies generated for this target.
 include CMakeFiles/Mandelbrot_set.dir/depend.make
@@ -68,50 +68,65 @@ include CMakeFiles/Mandelbrot_set.dir/flags.make
 
 CMakeFiles/Mandelbrot_set.dir/main.cpp.o: CMakeFiles/Mandelbrot_set.dir/flags.make
 CMakeFiles/Mandelbrot_set.dir/main.cpp.o: ../main.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Mandelbrot_set.dir/main.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Mandelbrot_set.dir/main.cpp.o -c "/Users/daniil/Documents/Projects/Mandelbrot set/main.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_1) "Building CXX object CMakeFiles/Mandelbrot_set.dir/main.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Mandelbrot_set.dir/main.cpp.o -c /Users/daniil/Documents/Projects/Mandelbrot-set/main.cpp
 
 CMakeFiles/Mandelbrot_set.dir/main.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Mandelbrot_set.dir/main.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/daniil/Documents/Projects/Mandelbrot set/main.cpp" > CMakeFiles/Mandelbrot_set.dir/main.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniil/Documents/Projects/Mandelbrot-set/main.cpp > CMakeFiles/Mandelbrot_set.dir/main.cpp.i
 
 CMakeFiles/Mandelbrot_set.dir/main.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Mandelbrot_set.dir/main.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/daniil/Documents/Projects/Mandelbrot set/main.cpp" -o CMakeFiles/Mandelbrot_set.dir/main.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniil/Documents/Projects/Mandelbrot-set/main.cpp -o CMakeFiles/Mandelbrot_set.dir/main.cpp.s
 
 CMakeFiles/Mandelbrot_set.dir/complex.cpp.o: CMakeFiles/Mandelbrot_set.dir/flags.make
 CMakeFiles/Mandelbrot_set.dir/complex.cpp.o: ../complex.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir="/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Mandelbrot_set.dir/complex.cpp.o"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Mandelbrot_set.dir/complex.cpp.o -c "/Users/daniil/Documents/Projects/Mandelbrot set/complex.cpp"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_2) "Building CXX object CMakeFiles/Mandelbrot_set.dir/complex.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Mandelbrot_set.dir/complex.cpp.o -c /Users/daniil/Documents/Projects/Mandelbrot-set/complex.cpp
 
 CMakeFiles/Mandelbrot_set.dir/complex.cpp.i: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Mandelbrot_set.dir/complex.cpp.i"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E "/Users/daniil/Documents/Projects/Mandelbrot set/complex.cpp" > CMakeFiles/Mandelbrot_set.dir/complex.cpp.i
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniil/Documents/Projects/Mandelbrot-set/complex.cpp > CMakeFiles/Mandelbrot_set.dir/complex.cpp.i
 
 CMakeFiles/Mandelbrot_set.dir/complex.cpp.s: cmake_force
 	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Mandelbrot_set.dir/complex.cpp.s"
-	/Applications/Xcode.app/Contents/Developer/Toolchains/XcodeDefault.xctoolchain/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S "/Users/daniil/Documents/Projects/Mandelbrot set/complex.cpp" -o CMakeFiles/Mandelbrot_set.dir/complex.cpp.s
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniil/Documents/Projects/Mandelbrot-set/complex.cpp -o CMakeFiles/Mandelbrot_set.dir/complex.cpp.s
+
+CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.o: CMakeFiles/Mandelbrot_set.dir/flags.make
+CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.o: ../Mandelbrot.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_3) "Building CXX object CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.o"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.o -c /Users/daniil/Documents/Projects/Mandelbrot-set/Mandelbrot.cpp
+
+CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.i"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /Users/daniil/Documents/Projects/Mandelbrot-set/Mandelbrot.cpp > CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.i
+
+CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.s"
+	/Library/Developer/CommandLineTools/usr/bin/c++ $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /Users/daniil/Documents/Projects/Mandelbrot-set/Mandelbrot.cpp -o CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.s
 
 # Object files for target Mandelbrot_set
 Mandelbrot_set_OBJECTS = \
 "CMakeFiles/Mandelbrot_set.dir/main.cpp.o" \
-"CMakeFiles/Mandelbrot_set.dir/complex.cpp.o"
+"CMakeFiles/Mandelbrot_set.dir/complex.cpp.o" \
+"CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.o"
 
 # External object files for target Mandelbrot_set
 Mandelbrot_set_EXTERNAL_OBJECTS =
 
-Mandelbrot_set: CMakeFiles/Mandelbrot_set.dir/main.cpp.o
-Mandelbrot_set: CMakeFiles/Mandelbrot_set.dir/complex.cpp.o
-Mandelbrot_set: CMakeFiles/Mandelbrot_set.dir/build.make
-Mandelbrot_set: /Library/Frameworks/./sfml-graphics.framework/Versions/2.5.1/sfml-graphics
-Mandelbrot_set: /Library/Frameworks/./sfml-window.framework/Versions/2.5.1/sfml-window
-Mandelbrot_set: /Library/Frameworks/./sfml-system.framework/Versions/2.5.1/sfml-system
-Mandelbrot_set: CMakeFiles/Mandelbrot_set.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir="/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug/CMakeFiles" --progress-num=$(CMAKE_PROGRESS_3) "Linking CXX executable Mandelbrot_set"
+../Mandelbrot_set: CMakeFiles/Mandelbrot_set.dir/main.cpp.o
+../Mandelbrot_set: CMakeFiles/Mandelbrot_set.dir/complex.cpp.o
+../Mandelbrot_set: CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.o
+../Mandelbrot_set: CMakeFiles/Mandelbrot_set.dir/build.make
+../Mandelbrot_set: /Library/Frameworks/./sfml-graphics.framework/Versions/2.5.1/sfml-graphics
+../Mandelbrot_set: /Library/Frameworks/./sfml-window.framework/Versions/2.5.1/sfml-window
+../Mandelbrot_set: /Library/Frameworks/./sfml-system.framework/Versions/2.5.1/sfml-system
+../Mandelbrot_set: CMakeFiles/Mandelbrot_set.dir/link.txt
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Linking CXX executable ../Mandelbrot_set"
 	$(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/Mandelbrot_set.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
-CMakeFiles/Mandelbrot_set.dir/build: Mandelbrot_set
+CMakeFiles/Mandelbrot_set.dir/build: ../Mandelbrot_set
 .PHONY : CMakeFiles/Mandelbrot_set.dir/build
 
 CMakeFiles/Mandelbrot_set.dir/clean:
@@ -119,6 +134,6 @@ CMakeFiles/Mandelbrot_set.dir/clean:
 .PHONY : CMakeFiles/Mandelbrot_set.dir/clean
 
 CMakeFiles/Mandelbrot_set.dir/depend:
-	cd "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug" && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" "/Users/daniil/Documents/Projects/Mandelbrot set" "/Users/daniil/Documents/Projects/Mandelbrot set" "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug" "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug" "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug/CMakeFiles/Mandelbrot_set.dir/DependInfo.cmake" --color=$(COLOR)
+	cd /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug && $(CMAKE_COMMAND) -E cmake_depends "Unix Makefiles" /Users/daniil/Documents/Projects/Mandelbrot-set /Users/daniil/Documents/Projects/Mandelbrot-set /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles/Mandelbrot_set.dir/DependInfo.cmake --color=$(COLOR)
 .PHONY : CMakeFiles/Mandelbrot_set.dir/depend
 

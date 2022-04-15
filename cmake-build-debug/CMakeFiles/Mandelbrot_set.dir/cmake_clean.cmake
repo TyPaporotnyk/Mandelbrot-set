@@ -1,8 +1,9 @@
 file(REMOVE_RECURSE
+  "../Mandelbrot_set"
+  "../Mandelbrot_set.pdb"
+  "CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.o"
   "CMakeFiles/Mandelbrot_set.dir/complex.cpp.o"
   "CMakeFiles/Mandelbrot_set.dir/main.cpp.o"
-  "Mandelbrot_set"
-  "Mandelbrot_set.pdb"
 )
 
 # Per-language clean rules from dependency scanning.

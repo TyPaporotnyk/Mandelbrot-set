@@ -57,23 +57,13 @@ RM = /Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake -E rm -f
 EQUALS = =
 
 # The top-level source directory on which CMake was run.
-CMAKE_SOURCE_DIR = "/Users/daniil/Documents/Projects/Mandelbrot set"
+CMAKE_SOURCE_DIR = /Users/daniil/Documents/Projects/Mandelbrot-set
 
 # The top-level build directory on which CMake was run.
-CMAKE_BINARY_DIR = "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug"
+CMAKE_BINARY_DIR = /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug
 
 #=============================================================================
 # Targets provided globally by CMake.
-
-# Special rule for the target rebuild_cache
-rebuild_cache:
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
-	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
-.PHONY : rebuild_cache
-
-# Special rule for the target rebuild_cache
-rebuild_cache/fast: rebuild_cache
-.PHONY : rebuild_cache/fast
 
 # Special rule for the target edit_cache
 edit_cache:
@@ -85,11 +75,21 @@ edit_cache:
 edit_cache/fast: edit_cache
 .PHONY : edit_cache/fast
 
+# Special rule for the target rebuild_cache
+rebuild_cache:
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --cyan "Running CMake to regenerate build system..."
+	/Applications/CLion.app/Contents/bin/cmake/mac/bin/cmake --regenerate-during-build -S$(CMAKE_SOURCE_DIR) -B$(CMAKE_BINARY_DIR)
+.PHONY : rebuild_cache
+
+# Special rule for the target rebuild_cache
+rebuild_cache/fast: rebuild_cache
+.PHONY : rebuild_cache/fast
+
 # The main all target
 all: cmake_check_build_system
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug/CMakeFiles" "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug//CMakeFiles/progress.marks"
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug//CMakeFiles/progress.marks
 	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 all
-	$(CMAKE_COMMAND) -E cmake_progress_start "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug/CMakeFiles" 0
+	$(CMAKE_COMMAND) -E cmake_progress_start /Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles 0
 .PHONY : all
 
 # The main clean target
@@ -117,65 +117,128 @@ depend:
 .PHONY : depend
 
 #=============================================================================
-# Target rules for targets named Mandelbrot_set
+# Target rules for targets named tidy
 
 # Build rule for target.
-Mandelbrot_set: cmake_check_build_system
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 Mandelbrot_set
-.PHONY : Mandelbrot_set
+tidy: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 tidy
+.PHONY : tidy
 
 # fast build rule for target.
-Mandelbrot_set/fast:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mandelbrot_set.dir/build.make CMakeFiles/Mandelbrot_set.dir/build
-.PHONY : Mandelbrot_set/fast
+tidy/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/tidy.dir/build.make CMakeFiles/tidy.dir/build
+.PHONY : tidy/fast
 
-complex.o: complex.cpp.o
-.PHONY : complex.o
+#=============================================================================
+# Target rules for targets named format
+
+# Build rule for target.
+format: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 format
+.PHONY : format
+
+# fast build rule for target.
+format/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/format.dir/build.make CMakeFiles/format.dir/build
+.PHONY : format/fast
+
+#=============================================================================
+# Target rules for targets named relise
+
+# Build rule for target.
+relise: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 relise
+.PHONY : relise
+
+# fast build rule for target.
+relise/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/relise.dir/build.make CMakeFiles/relise.dir/build
+.PHONY : relise/fast
+
+#=============================================================================
+# Target rules for targets named mandelbrot
+
+# Build rule for target.
+mandelbrot: cmake_check_build_system
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/Makefile2 mandelbrot
+.PHONY : mandelbrot
+
+# fast build rule for target.
+mandelbrot/fast:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/build
+.PHONY : mandelbrot/fast
+
+src/Mandelbrot.o: src/Mandelbrot.cpp.o
+.PHONY : src/Mandelbrot.o
 
 # target to build an object file
-complex.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mandelbrot_set.dir/build.make CMakeFiles/Mandelbrot_set.dir/complex.cpp.o
-.PHONY : complex.cpp.o
+src/Mandelbrot.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/src/Mandelbrot.cpp.o
+.PHONY : src/Mandelbrot.cpp.o
 
-complex.i: complex.cpp.i
-.PHONY : complex.i
+src/Mandelbrot.i: src/Mandelbrot.cpp.i
+.PHONY : src/Mandelbrot.i
 
 # target to preprocess a source file
-complex.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mandelbrot_set.dir/build.make CMakeFiles/Mandelbrot_set.dir/complex.cpp.i
-.PHONY : complex.cpp.i
+src/Mandelbrot.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/src/Mandelbrot.cpp.i
+.PHONY : src/Mandelbrot.cpp.i
 
-complex.s: complex.cpp.s
-.PHONY : complex.s
+src/Mandelbrot.s: src/Mandelbrot.cpp.s
+.PHONY : src/Mandelbrot.s
 
 # target to generate assembly for a file
-complex.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mandelbrot_set.dir/build.make CMakeFiles/Mandelbrot_set.dir/complex.cpp.s
-.PHONY : complex.cpp.s
+src/Mandelbrot.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/src/Mandelbrot.cpp.s
+.PHONY : src/Mandelbrot.cpp.s
 
-main.o: main.cpp.o
-.PHONY : main.o
+src/complex.o: src/complex.cpp.o
+.PHONY : src/complex.o
 
 # target to build an object file
-main.cpp.o:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mandelbrot_set.dir/build.make CMakeFiles/Mandelbrot_set.dir/main.cpp.o
-.PHONY : main.cpp.o
+src/complex.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/src/complex.cpp.o
+.PHONY : src/complex.cpp.o
 
-main.i: main.cpp.i
-.PHONY : main.i
+src/complex.i: src/complex.cpp.i
+.PHONY : src/complex.i
 
 # target to preprocess a source file
-main.cpp.i:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mandelbrot_set.dir/build.make CMakeFiles/Mandelbrot_set.dir/main.cpp.i
-.PHONY : main.cpp.i
+src/complex.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/src/complex.cpp.i
+.PHONY : src/complex.cpp.i
 
-main.s: main.cpp.s
-.PHONY : main.s
+src/complex.s: src/complex.cpp.s
+.PHONY : src/complex.s
 
 # target to generate assembly for a file
-main.cpp.s:
-	$(MAKE) $(MAKESILENT) -f CMakeFiles/Mandelbrot_set.dir/build.make CMakeFiles/Mandelbrot_set.dir/main.cpp.s
-.PHONY : main.cpp.s
+src/complex.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/src/complex.cpp.s
+.PHONY : src/complex.cpp.s
+
+src/main.o: src/main.cpp.o
+.PHONY : src/main.o
+
+# target to build an object file
+src/main.cpp.o:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/src/main.cpp.o
+.PHONY : src/main.cpp.o
+
+src/main.i: src/main.cpp.i
+.PHONY : src/main.i
+
+# target to preprocess a source file
+src/main.cpp.i:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/src/main.cpp.i
+.PHONY : src/main.cpp.i
+
+src/main.s: src/main.cpp.s
+.PHONY : src/main.s
+
+# target to generate assembly for a file
+src/main.cpp.s:
+	$(MAKE) $(MAKESILENT) -f CMakeFiles/mandelbrot.dir/build.make CMakeFiles/mandelbrot.dir/src/main.cpp.s
+.PHONY : src/main.cpp.s
 
 # Help Target
 help:
@@ -185,13 +248,19 @@ help:
 	@echo "... depend"
 	@echo "... edit_cache"
 	@echo "... rebuild_cache"
-	@echo "... Mandelbrot_set"
-	@echo "... complex.o"
-	@echo "... complex.i"
-	@echo "... complex.s"
-	@echo "... main.o"
-	@echo "... main.i"
-	@echo "... main.s"
+	@echo "... format"
+	@echo "... relise"
+	@echo "... tidy"
+	@echo "... mandelbrot"
+	@echo "... src/Mandelbrot.o"
+	@echo "... src/Mandelbrot.i"
+	@echo "... src/Mandelbrot.s"
+	@echo "... src/complex.o"
+	@echo "... src/complex.i"
+	@echo "... src/complex.s"
+	@echo "... src/main.o"
+	@echo "... src/main.i"
+	@echo "... src/main.s"
 .PHONY : help
 
 

@@ -1,12 +1,28 @@
 cmake_minimum_required(VERSION 3.20)
-project(Mandelbrot_set)
+project(mandelbrot CXX)
 
-set(CMAKE_CXX_STANDARD 20)
+set(CMAKE_CXX_EXTENSIONS OFF)
+set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
+set(THREADS_PREFER_PTHREAD_FLAG ON)
 
-set(CMAKE_RUNTIME_OUTPUT_DIRECTORY "${CMAKE_CURRENT_SOURCE_DIR}")
+find_package(SFML 2.5.1 REQUIRED COMPONENTS graphics)
 
-find_package(SFML 2.5 COMPONENTS graphics audio REQUIRED)
+if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
+    add_compile_options(-ffast-math -Werror -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion)
+#    add_compile_options("$<$<CONFIG:DEBUG>:-fsanitize=address,undefined>")
+#    add_link_options("$<$<CONFIG:DEBUG>:-fsanitize=address,undefined>")
+endif()
 
-add_executable(Mandelbrot_set main.cpp complex.cpp complex.h Mandelbrot.cpp Mandelbrot.h mathIn.h)
+add_executable(mandelbrot src/main.cpp src/complex.cpp src/complex.h src/Mandelbrot.cpp src/Mandelbrot.h src/mathIn.h)
 
-target_link_libraries(Mandelbrot_set sfml-graphics)
+target_link_libraries(mandelbrot PRIVATE sfml-graphics)
+target_compile_definitions(mandelbrot PRIVATE FONT_PATH="${CMAKE_SOURCE_DIR}/data")
+target_compile_features(mandelbrot PRIVATE cxx_std_20)
+
+add_custom_target(format
+        COMMAND clang-format -i `git ls-files *.cpp *.h`
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+add_custom_target(tidy
+        COMMAND clang-tidy -p ${CMAKE_BINARY_DIR} `git ls-files *.cpp`
+        WORKING_DIRECTORY ${CMAKE_SOURCE_DIR})
+add_custom_target(relise COMMAND mandelbrot)

@@ -5,4 +5,4 @@
 
 Implementation of the Mandelbrot set with c ++ and the sfml graphics library</br>
 
-![Project demonstration](img/1.png)
+![Project demonstration](docs/1.png)

@@ -8,8 +8,9 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/Users/daniil/Documents/Projects/Mandelbrot set/complex.cpp" "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug/CMakeFiles/Mandelbrot_set.dir/complex.cpp.o"
-  "/Users/daniil/Documents/Projects/Mandelbrot set/main.cpp" "/Users/daniil/Documents/Projects/Mandelbrot set/cmake-build-debug/CMakeFiles/Mandelbrot_set.dir/main.cpp.o"
+  "/Users/daniil/Documents/Projects/Mandelbrot-set/Mandelbrot.cpp" "/Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles/Mandelbrot_set.dir/Mandelbrot.cpp.o"
+  "/Users/daniil/Documents/Projects/Mandelbrot-set/complex.cpp" "/Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles/Mandelbrot_set.dir/complex.cpp.o"
+  "/Users/daniil/Documents/Projects/Mandelbrot-set/main.cpp" "/Users/daniil/Documents/Projects/Mandelbrot-set/cmake-build-debug/CMakeFiles/Mandelbrot_set.dir/main.cpp.o"
   )
 set(CMAKE_CXX_COMPILER_ID "AppleClang")
 
