@@ -6,8 +6,8 @@
 Implementation of the Mandelbrot set with c ++ and the sfml graphics library</br>
 
 <p float="middle">
-    <img src="docs/1.png" width="300"/>
-    <img src="docs/1.png" width="300"/>
+    <img src="docs/1.png" width="50%"/>
+    <img src="docs/2.png" width=auto/>
 </p>
 
 # Requirements
