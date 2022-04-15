@@ -3,7 +3,7 @@
 [![MIT License](https://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://choosealicense.com/licenses/mit/)
 ![Commits](https://img.shields.io/github/last-commit/TyPaporotnyk/Mandelbrot-set)
 
-Implementation of the Mandelbrot set with c ++ and the sfml graphics library</br>
+Implementation of the Mandelbrot set with c++ and the sfml graphics library</br>
 
 <p float="middle">
     <img src="docs/1.png" width="49%"/>
@@ -19,5 +19,5 @@ Implementation of the Mandelbrot set with c ++ and the sfml graphics library</br
 ```
 cmake -B build -DCMAKE_BUILD_TYPE=Release
 cmake --build build
-cmake --build build --target relise
+cmake --build build --target release
 ```
