@@ -11,9 +11,9 @@ Implementation of the Mandelbrot set with c ++ and the sfml graphics library</br
 </p>
 
 # Requirements
-* C++20
-* CMake 3.16
-* SFML 2.5.1
+* C++ 17
+* CMake 3.20
+* SFML 2.5
 
 # Building & Running
 ```
