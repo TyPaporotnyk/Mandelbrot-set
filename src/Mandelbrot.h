@@ -5,19 +5,20 @@
 #include <SFML/Graphics.hpp>
 #include <vector>
 #include <string>
+#include <thread>
 
 class Mandelbrot
 {
 private:
     const int MAX_FPS = 60;
 
-    const int WIDTH = 1920;
-    const int HEIGHT = 1280;
+    static constexpr int WIDTH = 960;
+    static constexpr int HEIGHT = 640;
 
     const int TEXT_SIZE = 24;
     const sf::Color TEXT_COLOR = sf::Color::White;
 
-    bool painted = false;
+    bool calculated = false;
     int iterations = 100;
 
     sf::Clock clock;
@@ -38,6 +39,8 @@ private:
             { 0,   7, 100}
     };
 
+    const void renderVoids();
+
     sf::RenderWindow*  window;
 
     sf::Font font1;
@@ -46,6 +49,8 @@ private:
     sf::Image image;
     sf::Sprite sprite;
     sf::Texture texture;
+
+    std::vector<std::thread> threads;
 
     void control(sf::Event e);
     void paint();

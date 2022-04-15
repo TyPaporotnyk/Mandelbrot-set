@@ -19,6 +19,8 @@ Mandelbrot::Mandelbrot()
 
     text.setFont(font1);
     text.setCharacterSize(TEXT_SIZE);
+    text.setOutlineThickness(2);
+    text.setOutlineColor(sf::Color::Black);
     text.setFillColor(TEXT_COLOR);
     text.setPosition({20,20});
 
@@ -26,6 +28,8 @@ Mandelbrot::Mandelbrot()
     max_color = colors.size()-1;
 
     clock = sf::Clock();
+
+    threads = std::vector<std::thread>(std::thread::hardware_concurrency());
 }
 
 int Mandelbrot::run()
@@ -56,7 +60,7 @@ void Mandelbrot::control(sf::Event e)
             //control
         else if(e.type == sf::Event::KeyPressed)
         {
-            painted = false;
+            calculated = false;
             if(e.key.code == sf::Keyboard::RBracket)
             {
                 iterations+=25;
@@ -95,7 +99,7 @@ void Mandelbrot::control(sf::Event e)
 
         else if(e.type == sf::Event::MouseButtonPressed)
         {
-            painted = false;
+            calculated = false;
             auto zoom_z = [&](double z)
             {
                 double cx = minRe+(maxRe-minRe)*e.mouseButton.x/WIDTH;
@@ -114,13 +118,13 @@ void Mandelbrot::control(sf::Event e)
             if(e.mouseButton.button==sf::Mouse::Left)
             {
                 zoom_z(2);
-                zoom*=5;
+                zoom*=2;
             }
             // Right Click to ZoomOut
             if(e.mouseButton.button==sf::Mouse::Right)
             {
                 zoom_z(1.0/2);
-                zoom/=5;
+                zoom/=2;
             }
 
         }
@@ -129,41 +133,55 @@ void Mandelbrot::control(sf::Event e)
 
 void Mandelbrot::paint()
 {
-    if(!painted)
+    if(!calculated)
     {
-        painted = true;
-        for (int y = 0; y < HEIGHT; ++y)
+        calculated = true;
+        int sum = HEIGHT/threads.size();
+        int start = 0;
+        int end = sum;
+        for(int i = 0; i < threads.size(); i++)
         {
-            for (int x = 0; x < WIDTH; ++x)
-            {
-                double a = minRe+(maxRe-minRe)*x/WIDTH;
-                double b = minIm+(maxIm-minIm)*y/HEIGHT;
-
-                complex c(a, b);
-                complex z(0, 0);
-
-                int iteration = 0;
-                while (iteration < iterations)
+            threads[i] = std::thread([this](int start, int end){
+                for (int y = start; y < end; ++y)
                 {
-                    iteration++;
+                    for (int x = 0; x < WIDTH; ++x)
+                    {
+                        double a = minRe + (maxRe - minRe) * x / WIDTH;
+                        double b = minIm + (maxIm - minIm) * y / HEIGHT;
 
-                    z.square();
-                    z.add(c);
+                        complex c(a, b);
+                        complex z(0, 0);
 
-                    if (z.absolute() > 2) break;
+                        int iteration = 0;
+                        while (iteration < iterations)
+                        {
+                            iteration++;
+
+                            z.square();
+                            z.add(c);
+
+                            if (z.absolute() > 2) break;
+                        }
+
+                        if (iteration == iterations) iteration = 0;
+
+                        double mu = 1.0 * iteration / iterations * max_color;
+
+                        size_t i_mu = static_cast<size_t>(mu);
+                        sf::Color color1 = colors[i_mu];
+                        sf::Color color2 = colors[std::min(i_mu + 1, max_color)];
+
+                        image.setPixel(x, y, linearInterpolation(color1, color2, mu - i_mu));
+                    }
                 }
+            }, start, end);
 
-                if(iteration == iterations) iteration = 0;
-
-                double mu = 1.0 * iteration / iterations * max_color;
-
-                size_t i_mu = static_cast<size_t>(mu);
-                sf::Color color1 = colors[i_mu];
-                sf::Color color2 = colors[std::min(i_mu+1, max_color)];
-
-                image.setPixel(x, y, linearInterpolation(color1, color2, mu-i_mu));
-            }
-
+            start += sum;
+            end += sum;
+        }
+        for(auto& thread : threads)
+        {
+            thread.join();
         }
 
         texture.loadFromImage(image);
