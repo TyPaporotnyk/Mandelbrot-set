@@ -12,8 +12,8 @@ class Mandelbrot
 private:
     const int MAX_FPS = 60;
 
-    static constexpr int WIDTH = 960;
-    static constexpr int HEIGHT = 640;
+    static constexpr int WIDTH = 1920;
+    static constexpr int HEIGHT = 1280;
 
     const int TEXT_SIZE = 24;
     const sf::Color TEXT_COLOR = sf::Color::White;
