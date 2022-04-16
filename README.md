@@ -21,9 +21,7 @@ cmake -B cmake-build -DCMAKE_BUILD_TYPE=Release
 cmake --build cmake-build
 cmake --build cmake-build --target release
 ```
-
 # Control
-
 | Action               | Control     |
 | ---------------------| ------------|
 | Go to point and zoom | RClick      |
