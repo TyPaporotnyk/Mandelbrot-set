@@ -17,7 +17,7 @@ Implementation of the Mandelbrot set with c++ and the sfml graphics library</br>
 
 # Building & Running
 ```
-cmake -B build -DCMAKE_BUILD_TYPE=Release
-cmake --build build
-cmake --build build --target release
+cmake -B cmake-build -DCMAKE_BUILD_TYPE=Release
+cmake --build cmake-build
+cmake --build cmake-build --target release
 ```

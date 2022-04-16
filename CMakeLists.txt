@@ -7,13 +7,14 @@ set(THREADS_PREFER_PTHREAD_FLAG ON)
 
 find_package(SFML 2.5 COMPONENTS graphics REQUIRED)
 
-#if(CMAKE_CXX_COMPILER_ID MATCHES "(GNU|Clang)")
-#    add_compile_options(-ffast-math -Werror -Wall -Wextra -Wpedantic -Wshadow -Wconversion -Wsign-conversion)
-#    add_compile_options("$<$<CONFIG:DEBUG>:-fsanitize=address,undefined>")
-#    add_link_options("$<$<CONFIG:DEBUG>:-fsanitize=address,undefined>")
-#endif()
+if (MSVC)
+    add_compile_options(/W4 /WX)
+else()
+    add_compile_options(-Wall -Wextra -pedantic -Wswitch)
+    add_link_options("$<$<CONFIG:DEBUG>:-fsanitize=address,undefined>")
+endif()
 
-add_executable(mandelbrot src/main.cpp src/complex.cpp src/complex.h src/Mandelbrot.cpp src/Mandelbrot.h src/mathIn.h)
+add_executable(mandelbrot src/main.cpp src/Mandelbrot.cpp src/Mandelbrot.h src/mathIn.h)
 
 target_link_libraries(mandelbrot PRIVATE sfml-graphics)
 target_compile_definitions(mandelbrot PRIVATE FONT_PATH="${CMAKE_SOURCE_DIR}/data/font.ttf")

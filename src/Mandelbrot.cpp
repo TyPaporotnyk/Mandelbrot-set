@@ -1,10 +1,8 @@
 #include "Mandelbrot.h"
-#include "complex.h"
 #include "mathIn.h"
 
 #include <iomanip>
-#include <iostream>
-#include <sstream>
+#include <complex>
 
 Mandelbrot::Mandelbrot()
 {
@@ -15,7 +13,7 @@ Mandelbrot::Mandelbrot()
     image.create(WIDTH, HEIGHT);
 
     // Font load
-    if(!font1.loadFromFile(FONT_PATH)) std::cout << "Font not loaded!" << std::endl;
+    font1.loadFromFile(FONT_PATH);
 
     text.setFont(font1);
     text.setCharacterSize(TEXT_SIZE);
@@ -30,6 +28,8 @@ Mandelbrot::Mandelbrot()
     clock = sf::Clock();
 
     threads = std::vector<std::thread>(std::thread::hardware_concurrency());
+
+    pixels = std::make_unique<std::array<std::array<sf::Color, WIDTH>, HEIGHT>>();
 }
 
 int Mandelbrot::run()
@@ -39,11 +39,11 @@ int Mandelbrot::run()
         sf::Event e;
 
         control(e);
+        processText();
 
         window->clear();
 
         paint();
-        setText();
 
         window->display();
     }
@@ -51,82 +51,85 @@ int Mandelbrot::run()
     return 1;
 }
 
-void Mandelbrot::control(sf::Event e)
+void Mandelbrot::control(sf::Event& e)
 {
     while(window->pollEvent(e))
     {
-        if(e.type == sf::Event::Closed) window->close();
-
-            //control
-        else if(e.type == sf::Event::KeyPressed)
+        switch (e.type)
         {
-            calculated = false;
-            if(e.key.code == sf::Keyboard::RBracket)
-            {
-                iterations+=25;
-            }
-            else if(e.key.code == sf::Keyboard::LBracket & iterations > 25)
-            {
-                iterations -= 25;
-            }
+            default:
+                break;
 
-                // Up/Down
-            else if(e.key.code == sf::Keyboard::W)
-            {
+            case sf::Event::Closed:
+                window->close();
+                break;
 
-                minIm-= stepIm;
-                maxIm-= stepIm;
-            }
-            else if(e.key.code == sf::Keyboard::S)
-            {
-                minIm+= stepIm;
-                maxIm+= stepIm;
-            }
+            case sf::Event::KeyPressed:
+                calculated = false;
 
-                //Left/Right
-            else if(e.key.code == sf::Keyboard::A)
-            {
+                switch (e.key.code)
+                {
+                    case sf::Keyboard::RBracket:
+                        iterations+=25;
+                        break;
+                    case sf::Keyboard::LBracket:
+                        iterations-=25;
+                        break;
+                        
+                    case sf::Keyboard::W:
+                        minIm-= stepIm;
+                        maxIm-= stepIm;
+                        break;
+                    case sf::Keyboard::S:
+                        minIm+= stepIm;
+                        maxIm+= stepIm;
+                        break;
+                    case sf::Keyboard::A:
+                        minRe-= stepRe;
+                        maxRe-= stepRe;
+                        break;
+                    case sf::Keyboard::D:
+                        minRe+= stepRe;
+                        maxRe+= stepRe;
+                        break;
+                    default:
+                        break;
+                }
+                break;
 
-                minRe-= stepRe;
-                maxRe-= stepRe;
-            }
-            else if(e.key.code == sf::Keyboard::D)
-            {
-                minRe+= stepRe;
-                maxRe+= stepRe;
-            }
-        }
+            case sf::Event::MouseButtonPressed:
+                calculated = false;
 
-        else if(e.type == sf::Event::MouseButtonPressed)
-        {
-            calculated = false;
-            auto zoom_z = [&](double z)
-            {
-                double cx = minRe+(maxRe-minRe)*e.mouseButton.x/WIDTH;
-                double cy = minIm+(maxIm-minIm)*e.mouseButton.y/HEIGHT;
+                auto zoom_z = [&](double z)
+                {
+                    double cx = minRe+(maxRe-minRe)*e.mouseButton.x/WIDTH;
+                    double cy = minIm+(maxIm-minIm)*e.mouseButton.y/HEIGHT;
 
-                double tminr = cx-(maxRe-minRe)/2/z;
-                maxRe = cx+(maxRe-minRe)/2/z;
-                minRe = tminr;
+                    double tminr = cx-(maxRe-minRe)/2/z;
+                    maxRe = cx+(maxRe-minRe)/2/z;
+                    minRe = tminr;
 
-                double tmini = cy-(maxIm-minIm)/2/z;
-                maxIm = cy+(maxIm-minIm)/2/z;
-                minIm = tmini;
-            };
+                    double tmini = cy-(maxIm-minIm)/2/z;
+                    maxIm = cy+(maxIm-minIm)/2/z;
+                    minIm = tmini;
+                };
 
-            // Left Click to ZoomIn
-            if(e.mouseButton.button==sf::Mouse::Left)
-            {
-                zoom_z(2);
-                zoom*=2;
-            }
-            // Right Click to ZoomOut
-            if(e.mouseButton.button==sf::Mouse::Right)
-            {
-                zoom_z(1.0/2);
-                zoom/=2;
-            }
+                switch (e.mouseButton.button)
+                {
+                    case sf::Mouse::Left:
+                        zoom_z(2);
+                        zoom*=2;
+                        break;
 
+                    case sf::Mouse::Right:
+                        zoom_z(1.0/2);
+                        zoom/=2;
+                        break;
+
+                    default:
+                        break;
+                }
+                break;
         }
     }
 }
@@ -139,9 +142,9 @@ void Mandelbrot::paint()
         int sum = HEIGHT/threads.size();
         int start = 0;
         int end = sum;
-        for(int i = 0; i < threads.size(); i++)
+        for(unsigned int i = 0; i < threads.size(); i++)
         {
-            threads[i] = std::thread([this](int start, int end){
+            threads[i] = std::thread([this](int start, int end) noexcept{
                 for (int y = start; y < end; ++y)
                 {
                     for (int x = 0; x < WIDTH; ++x)
@@ -149,19 +152,11 @@ void Mandelbrot::paint()
                         double a = minRe + (maxRe - minRe) * x / WIDTH;
                         double b = minIm + (maxIm - minIm) * y / HEIGHT;
 
-                        complex c(a, b);
-                        complex z(0, 0);
+                        std::complex<double> c(a, b);
 
                         int iteration = 0;
-                        while (iteration < iterations)
-                        {
-                            iteration++;
-
-                            z.square();
-                            z.add(c);
-
-                            if (z.absolute() > 2) break;
-                        }
+                        for (std::complex<double> z = {0,0}; std::norm(z) <= 4.0 && iteration < iterations; ++iteration)
+                            z = z * z + c;
 
                         if (iteration == iterations) iteration = 0;
 
@@ -171,7 +166,7 @@ void Mandelbrot::paint()
                         sf::Color color1 = colors[i_mu];
                         sf::Color color2 = colors[std::min(i_mu + 1, max_color)];
 
-                        image.setPixel(x, y, linearInterpolation(color1, color2, mu - i_mu));
+                        (*pixels)[y][x] = linearInterpolation(color1, color2, mu - i_mu);
                     }
                 }
             }, start, end);
@@ -184,19 +179,21 @@ void Mandelbrot::paint()
             thread.join();
         }
 
+        image.create(WIDTH, HEIGHT, (sf::Uint8*)pixels->data());
+
         texture.loadFromImage(image);
         sprite.setTexture(texture);
     }
     window->draw(sprite);
+    window->draw(text);
 }
 
-void Mandelbrot::setText()
+void Mandelbrot::processText()
 {
     auto textBuilder = std::ostringstream();
 
-    textBuilder << std::setw(4) << 1'000'000 / clock.restart().asMicroseconds() << " fps\n";
-    textBuilder << std::setw(4) << iterations << " iterations\n";
+    textBuilder << 1'000'000 / clock.restart().asMicroseconds() << " fps\n";
+    textBuilder << iterations << " iterations\n";
 
     text.setString(textBuilder.str());
-    window->draw(text);
 }
